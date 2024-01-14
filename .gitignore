@@ -2,4 +2,5 @@
 .terraform/
 # ignore certain files
 terraform.tfstate
-terraform.backup
+terraform.tfstate.backup
+terraform.tfstate.backup2
