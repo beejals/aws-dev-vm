@@ -37,11 +37,21 @@ variable "identityfile_name" {
 variable "vpc_cidr_block" {
   type    = string
   default = "10.10.0.0/16"
+
+  validation {
+    condition     = can(cidrnetmask(var.vpc_cidr_block))
+    error_message = "Must be valid IPv4 CIDR block addresses"
+  }
 }
 
 variable "subnet_cidr_block" {
   type    = string
   default = "10.10.1.0/24"
+
+  validation {
+    condition     = can(cidrnetmask(var.subnet_cidr_block))
+    error_message = "Must be valid IPv4 CIDR block addresses"
+  }
 }
 
 variable "availability_zone" {
