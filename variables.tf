@@ -1,3 +1,13 @@
+variable "env" {
+  type    = string
+  default = "dev"
+
+  validation {
+    condition     = contains(["dev", "staging", "prod"], var.env)
+    error_message = "Valid values for var: host_os are (dev, staging, prod)."
+  }
+}
+
 variable "host_os" {
   type        = string
   default     = "windows"
@@ -22,4 +32,24 @@ variable "my_ip" {
 variable "identityfile_name" {
   type    = string
   default = "dev_vm"
+}
+
+variable "vpc_cidr_block" {
+  type    = string
+  default = "10.10.0.0/16"
+}
+
+variable "subnet_cidr_block" {
+  type    = string
+  default = "10.10.1.0/24"
+}
+
+variable "availability_zone" {
+  type    = string
+  default = "ca-central-1a"
+}
+
+variable "ec2_instance_type" {
+  type    = string
+  default = "t2.micro"
 }

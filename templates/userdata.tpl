@@ -14,5 +14,11 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update -y &&
 
+# Install docker:
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y &&
 sudo usermod -aG docker ubuntu
+
+# Install apache web server
+sudo apt install apache2 -y &&
+sudo systemctl start apache2
+sudo systemctl enable apache2
