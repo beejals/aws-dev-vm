@@ -3,4 +3,3 @@
 # ignore certain files
 terraform.tfstate
 terraform.tfstate.backup
-terraform.tfstate.backup2
