@@ -1,0 +1,5 @@
+# ignore certain directories
+.terraform/
+# ignore certain files
+terraform.tfstate
+terraform.backup
