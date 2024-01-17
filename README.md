@@ -1,5 +1,5 @@
 # Developer VM Creation using Terraform Demo #
-This repo is created with sample Terraform code to show how to create your own developer VM on aws
+This repo is created with sample Terraform code to show how to create your own developer VM on aws.  This based on tutorial by [Derek Morgan](https://morethancertified.com/) and modified for my needs.
 ## Install and config ##
 1. Install Terraform - https://developer.hashicorp.com/terraform/install
     * Make sure to add Terraform home directory to your PATH environment variable
@@ -25,7 +25,7 @@ terraform apply
 ```
 9. The output should be the public IP of your VM, use this IP to SSH to.  If the ssh config file (~/.ssh/config) is correctly updated, the following should work
 ```bash
-ssh <dev_ip>
+ssh <app_public_ip>
 ```
 10. Connect to your VM using ssh command from step 9 and validate proper installation of Docker Engine
 ```bash
