@@ -9,29 +9,28 @@ This repo is created with sample Terraform code to show how to create your own d
 ```bash
 ssh-keygen -t ed25519
 ```
-4. Point your browser to https://www.whatismyip.com/ and get the public IPv4 address and update my_ip variable value, in terraform.tfvars file, as CIDR a block e.g. 1.2.3.4/32
-5. If you are using Mac or Linux to run this, update host_os variable value, in terraform.tfvars file, to linux
-6. Initialize you working directory
+4. If you are using Mac or Linux to run this, update host_os variable value, in terraform.tfvars file, to linux
+5. Initialize you working directory
 ```bash
 terraform init
 ```
-7. Run terraform plan
+6. Run terraform plan
 ```bash
 terraform plan
 ```
-8. Run terraform apply
+7. Run terraform apply
 ```bash
 terraform apply
 ```
-9. The output should be the public IP of your VM, use this IP to SSH to.  If the ssh config file (~/.ssh/config) is correctly updated, the following should work
+8. The output should be the public IP of your VM, use this IP to SSH to.  If the ssh config file (~/.ssh/config) is correctly updated, the following should work
 ```bash
 ssh <app_public_ip>
 ```
-10. Connect to your VM using ssh command from step 9 and validate proper installation of Docker Engine
+9. Connect to your VM using ssh command from step 9 and validate proper installation of Docker Engine
 ```bash
 docker run hello-world
 ```
-11. Run terraform destroy to terminate your instance
+10. Run terraform destroy to terminate your instance
 ```bash
 terraform destroy
 ```

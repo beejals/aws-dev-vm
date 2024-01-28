@@ -67,7 +67,7 @@ resource "aws_security_group_rule" "app_sg_rule_ingress_ssh" {
   to_port   = 22
   protocol  = "tcp"
   # restrict access to request from specific IP
-  cidr_blocks       = ["${var.my_ip}"]
+  cidr_blocks       = ["${chomp(data.http.my_ip.response_body)}/32"]
   security_group_id = aws_security_group.app_sg.id
 }
 
@@ -78,7 +78,7 @@ resource "aws_security_group_rule" "app_sg_rule_ingress_http" {
   to_port   = 80
   protocol  = "tcp"
   # restrict access to request from specific IP for dev and staging only
-  cidr_blocks       = var.env == "prod" ? ["0.0.0.0/0"] : ["${var.my_ip}"]
+  cidr_blocks       = var.env == "prod" ? ["0.0.0.0/0"] : ["${chomp(data.http.my_ip.response_body)}/32"]
   security_group_id = aws_security_group.app_sg.id
 }
 
@@ -89,7 +89,7 @@ resource "aws_security_group_rule" "app_sg_rule_ingress_https" {
   to_port   = 443
   protocol  = "tcp"
   # restrict access to request from specific IP for dev and staging only
-  cidr_blocks       = var.env == "prod" ? ["0.0.0.0/0"] : ["${var.my_ip}"]
+  cidr_blocks       = var.env == "prod" ? ["0.0.0.0/0"] : ["${chomp(data.http.my_ip.response_body)}/32"]
   security_group_id = aws_security_group.app_sg.id
 }
 
