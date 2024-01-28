@@ -116,7 +116,7 @@ resource "aws_instance" "app_vm" {
   key_name               = aws_key_pair.app_auth_key.id
   vpc_security_group_ids = [aws_security_group.app_sg.id]
   subnet_id              = aws_subnet.app_public_subnet.id
-  user_data              = file("templates/userdata.tpl")
+  user_data              = templatefile("templates/userdata.tpl", {var1=var.github_token})
 
   root_block_device {
     volume_size = 10

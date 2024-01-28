@@ -20,5 +20,9 @@ sudo usermod -aG docker ubuntu
 
 # Install apache web server
 sudo apt install apache2 -y &&
-sudo systemctl start apache2
-sudo systemctl enable apache2
+sudo systemctl start apache2 &&
+sudo systemctl enable apache2 &&
+
+# get the html source code from git and copy to /var/www/html/ directory
+sudo git clone https://${var1}@github.com/beejals/web-projects.git &&
+sudo cp web-projects/poster/* /var/www/html/ -f -r

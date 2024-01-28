@@ -30,7 +30,14 @@ ssh <app_public_ip>
 ```bash
 docker run hello-world
 ```
-10. Run terraform destroy to terminate your instance
+10. The following lines in userdata.tpl installs my html source code.  Update it for your needs or comment it out
+```bash
+# get the html source code from git and copy to /var/www/html/ directory
+sudo git clone https://${var1}@github.com/beejals/web-projects.git &&
+sudo cp web-projects/poster/* /var/www/html/ -f -r
+```
+11. Define environment variable TF_VAR_github_token so that you are not prompted for the github access token when running apply.  The value can be empty if you are not planning to use the userdata.tpl lines mentioned in step 10.
+12. Run terraform destroy to terminate your instance
 ```bash
 terraform destroy
 ```
