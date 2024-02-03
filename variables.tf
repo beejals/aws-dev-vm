@@ -4,7 +4,7 @@ variable "env" {
 
   validation {
     condition     = contains(["dev", "staging", "prod"], var.env)
-    error_message = "Valid values for var: host_os are (dev, staging, prod)."
+    error_message = "Valid values for var: env are (dev, staging, prod)."
   }
 }
 
@@ -25,8 +25,7 @@ variable "identityfile_name" {
 }
 
 variable "vpc_cidr_block" {
-  type    = string
-  default = "10.10.0.0/16"
+  type = string
 
   validation {
     condition     = can(cidrnetmask(var.vpc_cidr_block))
@@ -34,19 +33,32 @@ variable "vpc_cidr_block" {
   }
 }
 
-variable "subnet_cidr_block" {
-  type    = string
-  default = "10.10.1.0/24"
+variable "public_subnet_cidr_block" {
+  type = list(string)
 
   validation {
-    condition     = can(cidrnetmask(var.subnet_cidr_block))
-    error_message = "Must be valid IPv4 CIDR block addresses"
+    condition = alltrue([
+      for cidr in var.public_subnet_cidr_block : can(cidrnetmask(cidr))
+    ])
+    #condition     = can(cidrnetmask(var.subnet_cidr_block))
+    error_message = "All elements Must be valid IPv4 CIDR block addresses"
+  }
+}
+
+variable "private_subnet_cidr_block" {
+  type = list(string)
+
+  validation {
+    condition = alltrue([
+      for cidr in var.private_subnet_cidr_block : can(cidrnetmask(cidr))
+    ])
+    #condition     = can(cidrnetmask(var.subnet_cidr_block))
+    error_message = "All elements Must be valid IPv4 CIDR block addresses"
   }
 }
 
 variable "availability_zone" {
-  type    = string
-  default = "ca-central-1a"
+  type = list(string)
 }
 
 variable "ec2_instance_type" {
