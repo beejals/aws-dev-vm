@@ -45,4 +45,8 @@ resource "aws_instance" "app_vm" {
     })
     interpreter = var.host_os == "windows" ? ["Powershell", "-Command"] : ["bash", "-c"]
   }
+
+  lifecycle {
+    ignore_changes = [ tags ]
+  }
 }
