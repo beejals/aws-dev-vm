@@ -30,7 +30,7 @@ resource "aws_vpc" "app_vpc" {
   }
 }
 
-# Create public subnet for the VPC
+# Create public subnet(s) for the VPC
 resource "aws_subnet" "app_public_subnet" {
   count                   = length(var.public_subnet_cidr_block)
   vpc_id                  = aws_vpc.app_vpc.id
@@ -76,7 +76,7 @@ resource "aws_route_table_association" "app_public_rt_assoc" {
   route_table_id = aws_route_table.app_public_rt.id
 }
 
-# Create private subnet for the VPC
+# Create private subnet(s) for the VPC
 resource "aws_subnet" "app_private_subnet" {
   count             = length(var.private_subnet_cidr_block)
   vpc_id            = aws_vpc.app_vpc.id

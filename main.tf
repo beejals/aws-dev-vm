@@ -9,6 +9,7 @@ module "networking" {
   availability_zone         = var.availability_zone
 }
 
+# Create security group and associated rules
 module "security-groups" {
   source      = "./security-groups"
   app_sg_name = var.env
@@ -16,6 +17,7 @@ module "security-groups" {
   my_ip       = chomp(data.http.my_ip.response_body)
 }
 
+# Create EC2 instance
 module "dev-vm" {
   source            = "./dev-vm"
   vm_name           = var.env
